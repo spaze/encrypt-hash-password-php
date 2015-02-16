@@ -8,7 +8,7 @@
  *
  * Set your password database column to VARCHAR(255) or similar.
  *
- * @author Michal Špaček <http://www.michalspacek.cz>
+ * @author Michal Špaček <https://www.michalspacek.cz>
  */
 
 

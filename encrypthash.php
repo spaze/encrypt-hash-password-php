@@ -11,7 +11,7 @@
  * <code>echo current(unpack('H64', mcrypt_create_iv(32, MCRYPT_DEV_RANDOM)));</code>
  * Store the key in a configuration file.
  *
- * @author Michal Špaček <http://www.michalspacek.cz>
+ * @author Michal Špaček <https://www.michalspacek.cz>
  */
 
 
