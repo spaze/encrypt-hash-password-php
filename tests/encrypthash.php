@@ -1,4 +1,5 @@
 <?php
+// Run with php encrypthash.php
 require_once './functions-encrypthash.php';
 
 $keyHex = current(unpack('H64', mcrypt_create_iv(32, MCRYPT_DEV_URANDOM)));
