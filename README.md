@@ -16,5 +16,5 @@ CBC (*cipher-block chaining*) mode requires input that is a multiple of the bloc
 - [`example-encrypthash.php`](example-encrypthash.php) - Encrypted password hash storage, uses bcrypt + AES-256-CBC PKCS#7 padding or ZeroBytePadding for ext/mcrypt compatibility.
 - [`example-hash.php`](example-hash.php) - Password hash storage, uses bcrypt.
 - [`functions-encrypthash.php`](functions-encrypthash.php) - Functions used by `example-encrypthash.php`
-- [`test-encrypthash.php`](test-encrypthash.php) - Tests for encrypted hash functions
-- [`test-hash.php`](test-hash.php) - Tests for hash functions
+- [`test/encrypthash.php`](test/encrypthash.php) - Tests for encrypted hash functions
+- [`test/hash.php`](test/hash.php) - Tests for hash functions
