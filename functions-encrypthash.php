@@ -2,9 +2,9 @@
 /**
  * Encrypted password hash storage functions.
  *
- * Uses bcrypt + AES-256-CBC ZeroBytePadding.
+ * Uses bcrypt + AES-256-CBC PKCS#7 padding.
  *
- * Requires mcrypt PHP extension.
+ * Requires OpenSSL PHP extension.
  *
  * @author Michal Špaček <https://www.michalspacek.cz>
  */
@@ -13,9 +13,11 @@ function encryptAndHash($password, $keyHex)
 {
 	$hash = password_hash($password, PASSWORD_DEFAULT);
 
+	$cipher = 'AES-256-CBC';
 	$key = pack('H64', $keyHex);
-	$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC), MCRYPT_DEV_URANDOM);
-	$encryptedHash = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, $key, $hash, MCRYPT_MODE_CBC, $iv);
+	$options = OPENSSL_RAW_DATA;
+	$iv = createIv(openssl_cipher_iv_length($cipher));
+	$encryptedHash = openssl_encrypt($hash, $cipher, $key, $options, $iv);
 	return base64_encode($iv . $encryptedHash);
 }
 
@@ -23,12 +25,30 @@ function decryptAndVerifyHash($password, $encryptedBase64, $keyHex)
 {
 	$encrypted = base64_decode($encryptedBase64);
 
+	$cipher = 'AES-256-CBC';
 	$key = pack('H64', $keyHex);
-	$ivSize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
+	$options = OPENSSL_RAW_DATA;
+	$ivSize = openssl_cipher_iv_length($cipher);
 	$iv = substr($encrypted, 0, $ivSize);
 	$encrypted = substr($encrypted, $ivSize);
-	$decryptedHash = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key, $encrypted, MCRYPT_MODE_CBC, $iv);
-	$decryptedHash = rtrim($decryptedHash, "\0");
-
+	$decryptedHash = openssl_decrypt($encrypted, $cipher, $key, $options, $iv);
 	return password_verify($password, $decryptedHash);
+}
+
+function createIv($length)
+{
+	$random = false;
+	$strong = false;
+
+	$i = 0;
+	while (!$strong && $i < 10) {
+		$random = openssl_random_pseudo_bytes($length, $strong);
+		$i++;
+	}
+
+	if ($random === false) {
+		throw new \RuntimeException("Error creating IV, tried $i times");
+	}
+
+	return $random;
 }

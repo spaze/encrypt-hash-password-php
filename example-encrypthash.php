@@ -2,7 +2,7 @@
 /**
  * Encrypted password hash storage example.
  *
- * Uses bcrypt + AES-256-CBC ZeroBytePadding.
+ * Uses bcrypt + AES-256-CBC PKCS#7 padding.
  *
  * Requires mcrypt PHP extension.
  *
