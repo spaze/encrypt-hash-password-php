@@ -7,7 +7,7 @@ $plainText = 'Haxx0r ipsum tera dereference rsa ascii foo bypass flush ip';
 
 
 echo 'Test: ';
-$encrypted = encryptAndHash($plainText, $keyHex);
+$encrypted = hashAndEncrypt($plainText, $keyHex);
 echo (decryptAndVerifyHash($plainText, $encrypted, $keyHex) === true ? 'OK' : 'FAILED');
 echo PHP_EOL;
 
@@ -19,7 +19,7 @@ if (!extension_loaded('mcrypt')) {
 
 echo 'Test mcrypt compatibility, encrypt OpenSSL, decrypt MCrypt: ';
 // encrypt using OpenSSL
-$encrypted = encryptAndHash($plainText, $keyHex, true);
+$encrypted = hashAndEncrypt($plainText, $keyHex, true);
 // decrypt using MCrypt
 $encrypted = base64_decode($encrypted);
 $ivSize = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);

@@ -20,7 +20,7 @@ require_once './functions-encrypthash.php';
 // ********************************
 
 $key = '...'; // Loaded from a config file
-$encrypted = encryptAndHash($_POST['password'], $key);
+$encrypted = hashAndEncrypt($_POST['password'], $key);
 
 // Example only
 $statement = $pdo->prepare('INSERT INTO users (user, password) VALUES (?, ?)');

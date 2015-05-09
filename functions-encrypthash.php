@@ -17,7 +17,7 @@
  * @param boolean $mcryptCompatibility Whether the result should be compatible with mcrypt_encrypt
  * @return string
  */
-function encryptAndHash($password, $keyHex, $mcryptCompatibility = false)
+function hashAndEncrypt($password, $keyHex, $mcryptCompatibility = false)
 {
 	$hash = password_hash($password, PASSWORD_DEFAULT);
 
@@ -37,7 +37,7 @@ function encryptAndHash($password, $keyHex, $mcryptCompatibility = false)
  * Decrypt hash and verify that it matches a password.
  *
  * @param string $password The user's password
- * @param string $encryptedBase64 Encrypted hash created by encryptAndHash()
+ * @param string $encryptedBase64 Encrypted hash created by hashAndEncrypt()
  * @param string $keyHex The encryption key
  * @param boolean $mcryptCompatibility Whether the input is compatible with mcrypt_encrypt
  * @return boolean
