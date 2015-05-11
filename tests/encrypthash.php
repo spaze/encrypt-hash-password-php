@@ -2,7 +2,7 @@
 // Run with php tests/encrypthash.php
 require_once './functions-encrypthash.php';
 
-$keyHex = current(unpack('H32', mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)));
+$keyHex = current(unpack('H32', openssl_random_pseudo_bytes(16)));
 $plainText = 'Haxx0r ipsum tera dereference rsa ascii foo bypass flush ip';
 
 

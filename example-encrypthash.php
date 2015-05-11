@@ -4,11 +4,12 @@
  *
  * Uses bcrypt + AES-128-CBC PKCS#7 padding.
  *
- * Requires mcrypt and openssl PHP extension.
+ * Requires openssl PHP extension.
  *
  * Set your password database column to VARCHAR(255) or similar.
  * Generate 128-bit key (32 chars, 0-9, A-F) using
- * <code>echo current(unpack('H32', mcrypt_create_iv(16, MCRYPT_DEV_RANDOM)));</code>
+ * <code>echo current(unpack('H32', openssl_random_pseudo_bytes(16)));</code>
+ * or by running <code>openssl rand -hex 16</code>
  * Store the key in a configuration file.
  *
  * @author Michal Špaček <https://www.michalspacek.cz>
