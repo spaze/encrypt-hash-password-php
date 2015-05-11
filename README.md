@@ -14,3 +14,6 @@ Example of an encrypted password hash storage in PHP, uses bcrypt for hashing an
 - [`functions-encrypthash.php`](functions-encrypthash.php) - Functions used by `example-encrypthash.php`
 - [`tests/encrypthash.php`](tests/encrypthash.php) - Tests for encrypted hash functions
 - [`tests/hash.php`](tests/hash.php) - Tests for hash functions
+
+## Tests
+Simple tests are included, run them with `php tests/hash.php` and `php tests/encrypthash.php`.

@@ -1,5 +1,5 @@
 <?php
-// Run with php hash.php
+// Run with php tests/hash.php
 $plainText = 'Haxx0r ipsum tera dereference rsa ascii foo bypass flush ip';
 $hash = password_hash($plainText, PASSWORD_DEFAULT);
 
