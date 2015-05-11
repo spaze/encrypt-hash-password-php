@@ -5,7 +5,7 @@ Example of an encrypted password hash storage in PHP, uses bcrypt for hashing an
 **Do not** encrypt just the passwords, encrypt only password hashes for extra security.
 
 ## Usage
-- Install [defuse/php-encryption](https://github.com/defuse/php-encryption) first
+- Install [defuse/php-encryption](https://github.com/defuse/php-encryption) first, or at least the `Crypto.php` file
 - Don't write your own encryption functions
 
 ## Files
